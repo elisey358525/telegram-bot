@@ -284,3 +284,13 @@ def main():
 
 if __name__ == '__main__':
     main()
+    def notify_restart(context: CallbackContext):
+    """Уведомляет о перезапуске бота"""
+    try:
+        context.bot.send_message(ADMIN_ID, "🔄 Бот перезапущен!")
+    except:
+        pass
+
+# В main() после start_polling():
+job_queue = updater.job_queue
+job_queue.run_once(notify_restart, 5)
